@@ -6,10 +6,13 @@
 <title>Page Title</title>
 </head>
 <body>
-	<h1> 메 뉴 </h1>
-	<a href="member/main.jsp">회원관리</a>
-	<a href="account/main.jsp">계좌관리</a>
-	<a href="">게시판</a>
-	<a href="">관리자</a>			
+	<h1> 로그인 </h1>
+	<div>
+		<form action="member.do">
+			ID <input type="text" name="id"/><br />
+			PASS <input type="text" name="pass"/><br />
+			<input type="submit" id="btn" value="로그인" />
+		</form>
+	</div>
 </body>
 </html>

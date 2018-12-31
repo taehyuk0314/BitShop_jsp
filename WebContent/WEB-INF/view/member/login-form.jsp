@@ -8,8 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>환영합니다</h1>
-<a href="../account/main.jsp">계좌번호만들러가즈아</a>
-<a href="../index.jsp">홈화면으로</a>
+<form action="login-result.jsp">
+<h1>로그인</h1>
+<h3><input type="text" name ="id" /></h3>
+<h3><input type="text" name ="pass" /></h3>
+<input type="submit" name= "btn" value= "LOGIN" />
+</form>
+<h3></h3>
 </body>
 </html>
