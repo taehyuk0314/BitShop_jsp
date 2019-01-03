@@ -14,11 +14,16 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("관리자로 들어왔다");
-		String action = request.getParameter("actoin");
-		switch((action==null)?"move":action) {
+		String cmd = request.getParameter("cmd");
+		String page = request.getParameter("page");
+		String dir = request.getParameter("dir");
+		if(page==null) {page="main";}
+		if(dir==null) {
+			dir=request.getServletPath().substring(1,request.getServletPath().indexOf("."));
+		}
+		switch((cmd==null)?"move":cmd) {
 		case"move" :
-			Command.move(request, response, "admin/main");
+			Command.move(request, response, dir+"/"+page);
 			break;
 		}
 	}
