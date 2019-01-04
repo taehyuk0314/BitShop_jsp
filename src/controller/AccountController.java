@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import domain.AccountBean;
+import service.AccountService;
+import service.AccountServiceImpl;
 
 
 @WebServlet("/account.do")
@@ -16,24 +19,30 @@ public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AccountService accountService = new AccountServiceImpl();
 		String cmd = request.getParameter("cmd");
+		cmd =(cmd==null)?"move":cmd;
 		String page = request.getParameter("page");
-		String dir = request.getParameter("dir");
 		if(page==null) {page="main";}
+		String dir = request.getParameter("dir");
 		if(dir==null) {
 			dir=request.getServletPath().substring(1,request.getServletPath().indexOf("."));
 			
 		}
-		switch((cmd==null)?"move":cmd) {
+		switch(cmd) {
+		case"open-account":
+			String money = request.getParameter("money");
+			String accountNum =accountService.joinAccount(Integer.parseInt(money));
+			AccountBean account = accountService.findByAccountNum(accountNum);
+			request.setAttribute("account", account);
+			Command.move(request, response, dir, page);
+			break;
 		case"move" :
-			Command.move(request, response, dir+"/"+page);
+			Command.move(request, response, dir,page);
 			break;
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

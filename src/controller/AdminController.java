@@ -14,23 +14,27 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("관리자로옴");
 		String cmd = request.getParameter("cmd");
+		cmd =(cmd==null)?"move":cmd;
+		System.out.println("cmd ="+cmd);
 		String page = request.getParameter("page");
-		String dir = request.getParameter("dir");
 		if(page==null) {page="main";}
+		System.out.println("page="+page);
+		String dir = request.getParameter("dir");
 		if(dir==null) {
 			dir=request.getServletPath().substring(1,request.getServletPath().indexOf("."));
+			
 		}
-		switch((cmd==null)?"move":cmd) {
+		System.out.println("dir"+dir);
+		switch(cmd) {
 		case"move" :
-			Command.move(request, response, dir+"/"+page);
+			Command.move(request, response, dir,page);
 			break;
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

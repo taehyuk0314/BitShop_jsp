@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/*index*/
+@charset "UTF-8";
+#title {width : 150px; height :50px; 
+				margin: 0 auto; color: #555; margin-top: 100px}
+#login-outer-tab {width : 80%; margin: 0 auto; margin-top: 50px; 
+				text-align: center}				
+#login-inner-tab tr{border: 1px solid gray}
+#login-inner-tab tr td{border: 1px solid gray}
+#login-inner-tab {width: 300px; margin: 0 auto;border: 1px solid gray}
+#userid-input {width: 190px; height: 45px}
+#password-input {width: 190px; height: 45px}
+#login-btn {width: 100px; height: 100px}
+/*view */
+#wrapper{
+	width: 100%;
+	height: 100%;
+	border: 1px solid gray;
+
+}
+#wrapper tr{
+	border: 1px solid gray;
+}
+#wrapper tr td{
+	border: 1px solid gray;
+}
+#first{
+}
+#side-menu{
+	width: 30%;
+}
+#side-menu table tr{
+	border :2px solid black;
+}
+#navi-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+#navi-bar li {
+  float: left;
+}
+#navi-bar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#navi-bar li a:hover {
+  background-color: #111;
+}	
+#footer{
+	hight: 100px;
+}

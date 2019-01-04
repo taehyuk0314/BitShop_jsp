@@ -16,26 +16,25 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("멤버서블릿으로 들어옴");
 		String cmd = request.getParameter("cmd");
 		String page = request.getParameter("page");
 		if(page==null) {page="main";}
 		String dir = request.getParameter("dir");
 		if(dir==null) {
-			dir = request.getServletPath();
-			dir = dir.substring(1, dir.indexOf("."));
+			dir=request.getServletPath().substring(1,request.getServletPath().indexOf("."));
 		}
 		switch((cmd==null)?"move":cmd) {
 		case"login":
-			String id = request.getParameter("id");
-			String pass = request.getParameter("pass");
-			System.out.println("멤버서블릿으로 들어옴");
-			if(id.equals("aa")&&pass.equals("aa")){
-				Command.move(request, response, dir+"/"+page);
-			}else {
-				Command.move(request, response, "index");
-		}
+			String id = request.getParameter("uid");
+			String pass = request.getParameter("upass");
+			if(!(id.equals("aa")&&pass.equals("aa"))){
+				dir ="";
+				page="index";
+			}
+			Command.move(request, response, dir,page);
 		case"move":
-			Command.move(request, response, "member/main");
+			Command.move(request, response, dir,page);
 			break;
 		}
 	}
