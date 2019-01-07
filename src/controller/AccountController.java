@@ -34,10 +34,20 @@ public class AccountController extends HttpServlet {
 			String money = request.getParameter("money");
 			String accountNum =accountService.joinAccount(Integer.parseInt(money));
 			AccountBean account = accountService.findByAccountNum(accountNum);
+			String dest = request.getParameter("dest");
+			if(dest==null) {
+				dest="NONE";
+			}
+			request.setAttribute("dest", dest);
 			request.setAttribute("account", account);
 			Command.move(request, response, dir, page);
 			break;
 		case"move" :
+			dest = request.getParameter("dest");
+			if(dest==null) {
+				dest="NONE";
+			}
+			request.setAttribute("dest", dest);
 			Command.move(request, response, dir,page);
 			break;
 		}

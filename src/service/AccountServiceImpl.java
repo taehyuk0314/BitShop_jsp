@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Random;
 
 import domain.AccountBean;
-import domain.MemberBean;
 
 public class AccountServiceImpl implements AccountService{
 	private ArrayList<AccountBean> list; 
@@ -27,7 +26,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public String createAccountNum() {
 		Random random = new Random();
-		String accountNum = random.nextInt(9999)+"-"+random.nextInt(9999);
+		String accountNum = (random.nextInt(8999)+1001)+"-"+(random.nextInt(8999)+1001);
 		return accountNum;
 	}
 
@@ -40,8 +39,8 @@ public class AccountServiceImpl implements AccountService{
 	public AccountBean findByAccountNum(String accountNum) {
 		AccountBean accountBean = new AccountBean();
 		for(int i =0; i<list.size();i++) {
-			if(list.get(i).getAccountNum().equals(accountNum)) {
-				list.get(i);
+			if(accountNum.equals(list.get(i).getAccountNum())) {
+				accountBean =list.get(i);
 			}
 		}
 		return accountBean;
