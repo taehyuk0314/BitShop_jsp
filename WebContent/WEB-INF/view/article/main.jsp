@@ -19,6 +19,9 @@
 		</td>
 		<td></td>
 	</tr>
+	<tr style="height: 100px">
+	<td colspan="2"></td>
+	</tr>
 </table>
 </body>
 </html>

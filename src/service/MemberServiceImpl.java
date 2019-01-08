@@ -2,14 +2,25 @@ package service;
 
 import java.util.ArrayList;
 
+import dao.MemberDAO;
+import dao.MemberDAOImpl;
 import domain.MemberBean;
 
 public class MemberServiceImpl implements MemberService{
+	private static MemberServiceImpl instance = new MemberServiceImpl();
+	private MemberServiceImpl() {}
+	 
+	public static MemberServiceImpl getInstance() {return instance;}
 
 	@Override
-	public void joinMember(String id, String name, String pass, String ssn) {
-		// TODO Auto-generated method stub
-		
+	public void joinMember(MemberBean member) {
+		System.out.println("멤버서비스 조인에진입");
+		System.out.println("==컨트롤러에서 넘오온 회원정보 ==");
+		System.out.println("ID:"+member.getId());
+		System.out.println("name:"+member.getName());
+		System.out.println("pass:"+member.getPass());
+		System.out.println("ssn:"+member.getSsn());
+		MemberDAOImpl.getInstance().insertMember(member);
 	}
 
 	@Override
@@ -26,20 +37,20 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberBean findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberBean member = new MemberBean();
+		return member;
 	}
 
 	@Override
 	public int countMember() {
-		// TODO Auto-generated method stub
-		return 0;
+		int count =0;
+		return count;
 	}
 
 	@Override
 	public boolean existMember(String id, String pass) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean exist=false;
+		return exist;
 	}
 
 	@Override

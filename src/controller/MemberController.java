@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import domain.MemberBean;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 
 @WebServlet("/member.do")
@@ -16,6 +19,7 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		MemberBean member = null;
 		System.out.println("멤버서블릿으로 들어옴");
 		String cmd = request.getParameter("cmd");
 		String page = request.getParameter("page");
@@ -35,12 +39,26 @@ public class MemberController extends HttpServlet {
 			Command.move(request, response, dir,page);
 			break;
 		case"move":
+			System.out.println("여긴왔냐");
 			String dest=request.getParameter("dest");
 			if(dest==null) {
 				dest="NONE";
 			}
 			request.setAttribute("dest",dest);
 			Command.move(request, response, dir,page);
+			break;
+		case"join":
+			System.out.println("여기까진 왔나?");
+			member = new MemberBean();
+			member.setId(request.getParameter("id"));
+			member.setName(request.getParameter("name"));
+			member.setPass(request.getParameter("pass"));
+			member.setSsn(request.getParameter("ssn"));
+			MemberServiceImpl.getInstance().joinMember(member);
+			request.setAttribute("dest", "mypage");
+			request.setAttribute("member", member);
+			Command.move(request, response, dir,page);
+			
 			break;
 		}
 	}

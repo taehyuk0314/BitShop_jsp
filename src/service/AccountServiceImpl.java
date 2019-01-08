@@ -8,10 +8,13 @@ import java.util.Random;
 import domain.AccountBean;
 
 public class AccountServiceImpl implements AccountService{
-	private ArrayList<AccountBean> list; 
-	public AccountServiceImpl() {
+	private ArrayList<AccountBean> list;
+	private static AccountServiceImpl instance = new AccountServiceImpl(); 
+	private AccountServiceImpl() {
 		list = new ArrayList<>();
 	}
+	public static AccountServiceImpl getInstance() {return instance;}
+	
 	@Override
 	public String joinAccount(int money) {
 		AccountBean account = new AccountBean();

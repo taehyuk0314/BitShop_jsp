@@ -8,8 +8,7 @@
 		이름 <input type="text" name="name"/> <br />
 		비밀번호 <input type="text" name="pass"/> <br />
 		주민번호 <input type="text" name="ssn"/> <br />
-		키<input type="text" name="heigh"/><br />
-		몸무게<input type="text" name="weight" /><br />
+		<input type="hidden" name="cmd" value="join" />
 		<input type="submit" id ="btn" value="JOIN"/>
 	</form>
 </div>

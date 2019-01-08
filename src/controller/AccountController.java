@@ -19,7 +19,7 @@ public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountService accountService = new AccountServiceImpl();
+		AccountService accountService = AccountServiceImpl.getInstance();
 		String cmd = request.getParameter("cmd");
 		cmd =(cmd==null)?"move":cmd;
 		String page = request.getParameter("page");

@@ -15,13 +15,24 @@
 	</tr>
 	<tr  style="height: 300px">
 		<td style="width: 30%">
-		<%@include file="side-menu.jsp" %>
+		
+		<%
+		String dest = String.valueOf(request.getAttribute("dest"));
+		if(dest.equals("join-form")){
+			%>
+			<%@include file ="side-join.jsp" %>
+			<% 	
+		}else{
+			%>
+			<%@include file = "side-menu.jsp" %>
+			<%}
+		%>
 		</td>
 		<td>
 		<%
-		String dest =request.getAttribute("dest").toString();
+		dest =String.valueOf(request.getAttribute("dest"));
 		switch(dest){
-		case"NONE":
+		case"NONE": case"mypage":
 			%>
 			<%@ include file="mypage.jsp" %>
 			<% 
@@ -31,9 +42,13 @@
 			<%@ include file="join-form.jsp" %>
 			<% 
 			break;
+		
 		}
 		%>
 		</td>
+	</tr>
+		<tr style="height: 100px">
+	<td colspan="2"></td>
 	</tr>
 </table>
 </body>

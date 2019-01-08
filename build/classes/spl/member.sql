@@ -11,6 +11,7 @@ SHOW USER;
 
 SELECT * FROM TAB;
 
+
 ----테이블생성
 CREATE TABLE member(
 id VARCHAR2(10),
@@ -18,6 +19,7 @@ name VARCHAR2(10),
 pass VARCHAR2(10),
 ssn VARCHAR2(14)
 );
+SELECT * FROM member;
 
 ---삭제
 DROP TABLE member;

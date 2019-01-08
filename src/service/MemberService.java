@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import domain.MemberBean;
 
 public interface MemberService {
-	public void joinMember(String id,String name,String pass,String ssn);
+	public void joinMember(MemberBean member);
 	public ArrayList<MemberBean> list();
 	public ArrayList<MemberBean> findByName(String name);
 	public MemberBean findById(String id);

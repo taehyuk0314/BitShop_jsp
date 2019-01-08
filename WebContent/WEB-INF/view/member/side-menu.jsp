@@ -3,28 +3,13 @@
 		<div id="side-menu">
 		<table>
 			<tr>
-				<td style="font-size:30px">회원정보</td>
+				<td style="font-size:25px">마이페이지</td>
 			</tr>
 			<tr>
-				<td>회원가입</td>
+				<td>마이페이지</td>
 			</tr>
 			<tr>
-				<td>회원리스트</td>
-			</tr>
-			<tr>
-				<td>회원이름찾기</td>
-			</tr>
-			<tr>
-				<td>회원아이디찾기</td>
-			</tr>
-			<tr>
-				<td>회원 수</td>
-			</tr>
-			<tr>
-				<td>로그인</td>
-			</tr>
-			<tr>
-				<td>비밀번호변경</td>
+				<td>회원정보수정</td>
 			</tr>
 			<tr>
 				<td>회원탈퇴</td>
