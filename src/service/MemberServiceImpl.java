@@ -2,18 +2,19 @@ package service;
 
 import java.util.ArrayList;
 
-import dao.MemberDAO;
 import dao.MemberDAOImpl;
 import domain.MemberBean;
 
 public class MemberServiceImpl implements MemberService{
 	private static MemberServiceImpl instance = new MemberServiceImpl();
-	private MemberServiceImpl() {}
-	 
+	private MemberServiceImpl() {
+		dao = MemberDAOImpl.getInstance();
+	}
 	public static MemberServiceImpl getInstance() {return instance;}
-
+	MemberDAOImpl dao;
+	
 	@Override
-	public void joinMember(MemberBean member) {
+	public void createMember(MemberBean member) {
 		System.out.println("멤버서비스 조인에진입");
 		System.out.println("==컨트롤러에서 넘오온 회원정보 ==");
 		System.out.println("ID:"+member.getId());
@@ -24,26 +25,26 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<MemberBean> list() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<MemberBean> findAllMebers() {
+		ArrayList<MemberBean> list = new ArrayList<>();
+		return list;
 	}
 
 	@Override
-	public ArrayList<MemberBean> findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<MemberBean> findMembersByName(String name) {
+		ArrayList<MemberBean> list = dao.selectAllMembers();
+		return list;
 	}
 
 	@Override
-	public MemberBean findById(String id) {
-		MemberBean member = new MemberBean();
+	public MemberBean findMeberById(String id) {
+		MemberBean member = dao.selectMemberById(id);
 		return member;
 	}
 
 	@Override
-	public int countMember() {
-		int count =0;
+	public int countMembers() {
+		int count =dao.countMember();
 		return count;
 	}
 
@@ -54,15 +55,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void updatePass(String id, String pass, String newpass) {
-		// TODO Auto-generated method stub
-		
+	public void changePass(MemberBean member) {
+		dao.updatePass(member);
 	}
 
 	@Override
-	public void deleteMember(String id, String pass) {
-		// TODO Auto-generated method stub
-		
+	public void removeMember(MemberBean member) {
+		dao.deleteMember(member);
 	}
 
 }

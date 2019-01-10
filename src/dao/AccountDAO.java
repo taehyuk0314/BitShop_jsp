@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import domain.AccountBean;
 
 public interface AccountDAO {
-	public String insertAccount(int money);
+	public void insertAccount(int money);
 	public String createAccountNum();
-	public ArrayList<AccountBean> list();
-	public AccountBean findByAccountNum(String accountNum);
-	public int countAccountNum();
-	public boolean existAccountNum(String AccountNum);
-	public String accountToday();
+	public ArrayList<AccountBean> selectAllAccountNums();
+	public AccountBean selsectAccountByAccountNums(String accountNum);
+	public int countAccountNums();
+	public String regToday();
 	public void updateDeposit(int money);
 	public void updateWithdraw(int money);
 	public void deleteAccountNum(String accountNum); 

@@ -5,25 +5,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import dao.AccountDAOImpl;
 import domain.AccountBean;
 
 public class AccountServiceImpl implements AccountService{
-	private ArrayList<AccountBean> list;
 	private static AccountServiceImpl instance = new AccountServiceImpl(); 
 	private AccountServiceImpl() {
-		list = new ArrayList<>();
+		dao = AccountDAOImpl.getInstance();
 	}
 	public static AccountServiceImpl getInstance() {return instance;}
-	
+	AccountDAOImpl dao;
 	@Override
-	public String joinAccount(int money) {
+	public void openAccount(int money) {
 		AccountBean account = new AccountBean();
 		account.setAccountNum(createAccountNum());
 		account.setMoney(money);
-		account.setToday(accountToday());
-		list.add(account);
-		String accountNum = account.getAccountNum();
-		return accountNum;
+		account.setToday(regToday());
+		dao.insertAccount(money);
 	}
 
 	@Override
@@ -34,35 +32,33 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public ArrayList<AccountBean> list() {
-		return list();
+	public ArrayList<AccountBean> findAllAccountNums() {
+		dao.selectAllAccountNums();
+		return null;
 	}
 
 	@Override
 	public AccountBean findByAccountNum(String accountNum) {
 		AccountBean accountBean = new AccountBean();
-		for(int i =0; i<list.size();i++) {
-			if(accountNum.equals(list.get(i).getAccountNum())) {
-				accountBean =list.get(i);
-			}
-		}
+	
+		dao.selsectAccountByAccountNums(accountNum);
 		return accountBean;
 	}
 
 	@Override
-	public int countAccountNum() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countAccountNums() {
+		int count = dao.countAccountNums();
+		return count;
 	}
 
 	@Override
 	public boolean existAccountNum(String AccountNum) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean exist = false;
+		return exist;
 	}
 
 	@Override
-	public String accountToday() {
+	public String regToday() {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		return sdf.format(date);
@@ -70,20 +66,17 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public void updateDeposit(int money) {
-		// TODO Auto-generated method stub
-		
+		dao.updateDeposit(money);
 	}
 
 	@Override
 	public void updateWithdraw(int money) {
-		// TODO Auto-generated method stub
-		
+		dao.updateWithdraw(money);
 	}
 
 	@Override
-	public void deleteAccountNum(String accountNum) {
-		// TODO Auto-generated method stub
-		
+	public void removeAccountNum(String accountNum) {
+		dao.deleteAccountNum(accountNum);
 	}
 
 }

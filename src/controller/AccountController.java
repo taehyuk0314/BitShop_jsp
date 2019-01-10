@@ -32,8 +32,8 @@ public class AccountController extends HttpServlet {
 		switch(cmd) {
 		case"open-account":
 			String money = request.getParameter("money");
-			String accountNum =accountService.joinAccount(Integer.parseInt(money));
-			AccountBean account = accountService.findByAccountNum(accountNum);
+			accountService.openAccount(Integer.parseInt(money));
+			AccountBean account = AccountServiceImpl.getInstance().findByAccountNum("");
 			String dest = request.getParameter("dest");
 			if(dest==null) {
 				dest="NONE";
@@ -49,6 +49,28 @@ public class AccountController extends HttpServlet {
 			}
 			request.setAttribute("dest", dest);
 			Command.move(request, response, dir,page);
+			break;
+		case"findAllAccountNum":
+			AccountServiceImpl.getInstance().findAllAccountNums();
+			break;
+		case"findByAccountNum":
+			String accountNum =request.getParameter("accountNum");
+			AccountServiceImpl.getInstance().findByAccountNum(accountNum);
+			break;
+		case"countAccount":
+			AccountServiceImpl.getInstance().createAccountNum();
+			break;
+		case"deposit":
+			money = request.getParameter("money");
+			AccountServiceImpl.getInstance().updateDeposit(Integer.parseInt(money));
+			break;
+		case"withdraw":
+			money = request.getParameter("money");
+			AccountServiceImpl.getInstance().updateDeposit(Integer.parseInt(money));
+			break;
+		case"delet":
+			accountNum = request.getParameter("accountNum");
+			AccountServiceImpl.getInstance().removeAccountNum(accountNum);
 			break;
 		}
 	}

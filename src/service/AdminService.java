@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import domain.AdminBean;
 
 public interface AdminService {
-	public void joinAdmin(String name,String pass,String auth);
-	public ArrayList<AdminBean> listAdmin();
-	public ArrayList<AdminBean> findByAuth(String auth);
-	public AdminBean findByAdminNum(String adminNum);
-	public int countAdmin();
+	public void createAdmin(String name,String pass,String auth);
+	public ArrayList<AdminBean> findAllAdmins();
+	public ArrayList<AdminBean> findAminByAuths(String auth);
+	public AdminBean findAdminByAdminNum(String adminNum);
+	public int countAdmins();
 	public boolean existAdmin(String name,String pass);
-	public void updatePass(String name,String pass,String newpass);
-	public void updateAuth(String name,String pass,String auth);
-	public void deleteAdmin(String name,String pass);
+	public void changePass(String name,String pass,String newpass);
+	public void changeAuth(String name,String pass,String auth);
+	public void removeAdmin(String name,String pass);
 }

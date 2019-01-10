@@ -5,33 +5,36 @@ import java.util.ArrayList;
 import domain.AdminBean;
 
 public class AdminServiceImpl implements AdminService{
+	private static AdminServiceImpl instance = new AdminServiceImpl();
+	private AdminServiceImpl() {}	
+	public static AdminServiceImpl getInstance() {return instance;}
 
 	@Override
-	public void joinAdmin(String name, String pass, String auth) {
+	public void createAdmin(String name, String pass, String auth) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public ArrayList<AdminBean> listAdmin() {
+	public ArrayList<AdminBean> findAllAdmins() {
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<AdminBean> findAminByAuths(String auth) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<AdminBean> findByAuth(String auth) {
+	public AdminBean findAdminByAdminNum(String adminNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AdminBean findByAdminNum(String adminNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int countAdmin() {
+	public int countAdmins() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -43,19 +46,19 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void updatePass(String name, String pass, String newpass) {
+	public void changePass(String name, String pass, String newpass) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateAuth(String name, String pass, String auth) {
+	public void changeAuth(String name, String pass, String auth) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteAdmin(String name, String pass) {
+	public void removeAdmin(String name, String pass) {
 		// TODO Auto-generated method stub
 		
 	}

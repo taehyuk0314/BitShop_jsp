@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 import command.Command;
 import domain.MemberBean;
-import service.MemberService;
 import service.MemberServiceImpl;
 
 
@@ -54,11 +55,45 @@ public class MemberController extends HttpServlet {
 			member.setName(request.getParameter("name"));
 			member.setPass(request.getParameter("pass"));
 			member.setSsn(request.getParameter("ssn"));
-			MemberServiceImpl.getInstance().joinMember(member);
+			MemberServiceImpl.getInstance().createMember(member);
 			request.setAttribute("dest", "mypage");
 			request.setAttribute("member", member);
 			Command.move(request, response, dir,page);
-			
+			break;
+		case"findAll":
+			MemberServiceImpl.getInstance().findAllMebers();
+			break;
+		case"findByName":
+			String name=request.getParameter("name");
+			MemberServiceImpl.getInstance().findMembersByName(name);
+			break;
+		case"findById":
+			id = request.getParameter("id");
+			MemberServiceImpl.getInstance().findMeberById(id);
+			break;
+		case"count":
+			MemberServiceImpl.getInstance().countMembers();
+			break;
+		case"exist":
+			id=request.getParameter("id");
+			pass=request.getParameter("pass");
+			MemberServiceImpl.getInstance().existMember(id, pass);
+			break;
+		case"update":
+			member = new MemberBean();
+			member.setId(request.getParameter("id"));
+			member.setName(request.getParameter("name"));
+			member.setPass(request.getParameter("pass"));
+			member.setSsn(request.getParameter("ssn"));
+			MemberServiceImpl.getInstance().changePass(member);
+			break;
+		case"delet":
+			member = new MemberBean();
+			member.setId(request.getParameter("id"));
+			member.setName(request.getParameter("name"));
+			member.setPass(request.getParameter("pass"));
+			member.setSsn(request.getParameter("ssn"));
+			MemberServiceImpl.getInstance().removeMember(member);
 			break;
 		}
 	}
