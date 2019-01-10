@@ -20,7 +20,7 @@
 					<table id="login-inner-tab">
 						<tr>
 							<td><input id="userid-input" name="uid"
-									type ="text" value="aa" placeholder="ID" tabindex="1" />
+									type ="text"  placeholder="ID" tabindex="1" />
 							</td>
 							<td rowspan="2">
 								<button id="login-btn">LOGIN</button>
@@ -28,9 +28,10 @@
 						</tr>
 						<tr>
 							<td><input id="password-input" name="upass"
-								type="password" value="aa" placeholder="PASSWORD" tabindex="2"/>
+								type="password"  placeholder="PASSWORD" tabindex="2"/>
 								<input type="hidden" name="cmd" value="login" />
 								<input type="hidden" name="dir" value="home" />
+								<input type="hidden" name="dest" value="welcome" />
 							</td>
 						</tr>
 					</table>

@@ -38,8 +38,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberBean findMeberById(String id) {
-		MemberBean member = dao.selectMemberById(id);
-		return member;
+		return dao.selectMemberById(id);
 	}
 
 	@Override
@@ -51,6 +50,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean existMember(String id, String pass) {
 		boolean exist=false;
+		MemberBean member = new MemberBean();
+		member =MemberDAOImpl.getInstance().existMember(id, pass);
+		System.out.println(member);
+		if(member!=null&&id.equals(member.getId()) && pass.equals(member.getPass())) {
+			exist = true;
+		}
 		return exist;
 	}
 

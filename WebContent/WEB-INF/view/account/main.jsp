@@ -28,7 +28,7 @@
 			break;
 		case"open-result":
 			%>
-			<%@ include file = "open-result.jsp" %>
+			<%@ include file = "open-form.jsp" %>
 			<%
 			break;
 		}

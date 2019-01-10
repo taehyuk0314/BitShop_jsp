@@ -9,6 +9,8 @@
 		비밀번호 <input type="text" name="pass"/> <br />
 		주민번호 <input type="text" name="ssn"/> <br />
 		<input type="hidden" name="cmd" value="join" />
+		<input type="hidden" name ="dir" value="home" />
+		<input type="hidden" name="dest" value="welcome"/>
 		<input type="submit" id ="btn" value="JOIN"/>
 	</form>
 </div>

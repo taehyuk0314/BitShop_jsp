@@ -27,7 +27,8 @@ public class AccountController extends HttpServlet {
 		String dir = request.getParameter("dir");
 		if(dir==null) {
 			dir=request.getServletPath().substring(1,request.getServletPath().indexOf("."));
-			
+		String dest = request.getParameter("dest");
+		if(dest==null) {page="NONE";}
 		}
 		switch(cmd) {
 		case"open-account":
@@ -49,6 +50,9 @@ public class AccountController extends HttpServlet {
 			}
 			request.setAttribute("dest", dest);
 			Command.move(request, response, dir,page);
+			break;
+		case"occount-detail":
+			
 			break;
 		case"findAllAccountNum":
 			AccountServiceImpl.getInstance().findAllAccountNums();

@@ -18,7 +18,7 @@
 			<%@include file="side-menu.jsp" %>
 		</td>
 		<td>
-			<%@include file="content.jsp" %>
+			<%@include file="welcome.jsp" %>
 		</td>
 	</tr>
 	<tr style="height: 100px">
