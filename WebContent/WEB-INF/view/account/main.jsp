@@ -19,14 +19,14 @@
 		</td>
 		<td>
 		<%
-		String dest = request.getAttribute("dest").toString();
+		String dest = String.valueOf(request.getAttribute("dest"));
 		switch(dest){
 		case"NONE":
 			%>
 			<%@ include file ="content.jsp" %>
 			<%
 			break;
-		case"open-result":
+		case"open-form":
 			%>
 			<%@ include file = "open-form.jsp" %>
 			<%

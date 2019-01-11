@@ -7,12 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
+import javax.servlet.http.HttpSession;
 
 import command.Command;
 import domain.MemberBean;
-import service.MemberService;
 import service.MemberServiceImpl;
 
 
@@ -22,7 +20,6 @@ public class MemberController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberBean member = null;
-		MemberService memberService = MemberServiceImpl.getInstance();
 		System.out.println("멤버서블릿으로 들어옴");
 		String cmd = request.getParameter("cmd");
 		String page = request.getParameter("page");
@@ -32,6 +29,7 @@ public class MemberController extends HttpServlet {
 			dir=request.getServletPath().substring(1,request.getServletPath().indexOf("."));}
 		String dest = request.getParameter("dest");
 		if(dest==null) {dest=null;}
+		HttpSession session = request.getSession();
 		switch((cmd==null)?"move":cmd) {
 		case"login":
 			String id = request.getParameter("uid");
@@ -40,7 +38,7 @@ public class MemberController extends HttpServlet {
 			boolean loginOk = MemberServiceImpl.getInstance().existMember(id, pass);
 			if(loginOk){
 				request.setAttribute("dest", "welcome");
-				request.setAttribute("member", MemberServiceImpl.getInstance().findMeberById(id));
+				session.setAttribute("member", MemberServiceImpl.getInstance().findMeberById(id));
 				System.out.println("로그인성공");
 			}else {
 				dir ="";
@@ -49,6 +47,7 @@ public class MemberController extends HttpServlet {
 			}
 			break;
 		case"move":
+			dest = request.getParameter("dest");
 			request.setAttribute("dest",dest);
 			break;
 		case"join":
@@ -59,7 +58,7 @@ public class MemberController extends HttpServlet {
 			member.setSsn(request.getParameter("ssn"));
 			MemberServiceImpl.getInstance().createMember(member);
 			member = MemberServiceImpl.getInstance().findMeberById(member.getId());
-			request.setAttribute("member", member);
+			session.setAttribute("member", member);
 			System.out.println("조회결과"+member.toString());
 			request.setAttribute("dest", request.getAttribute("dest"));
 			break;
@@ -67,6 +66,15 @@ public class MemberController extends HttpServlet {
 			dir="";
 			page="index";
 			dest="";
+			session.invalidate();
+			break;
+		case"detail":
+			dir="member";
+			page="main";
+			request.setAttribute("dest","detail");
+			
+//			id = request.getParameter("id");
+//			request.setAttribute("member", memberService.findMeberById(id));
 			break;
 		case"findAll":
 			MemberServiceImpl.getInstance().findAllMebers();
@@ -81,14 +89,6 @@ public class MemberController extends HttpServlet {
 			break;
 		case"count":
 			MemberServiceImpl.getInstance().countMembers();
-			break;
-		case"update":
-			member = new MemberBean();
-			member.setId(request.getParameter("id"));
-			member.setName(request.getParameter("name"));
-			member.setPass(request.getParameter("pass"));
-			member.setSsn(request.getParameter("ssn"));
-			MemberServiceImpl.getInstance().changePass(member);
 			break;
 		case"delet":
 			member = new MemberBean();

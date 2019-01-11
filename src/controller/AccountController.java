@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import command.Command;
 import domain.AccountBean;
@@ -30,28 +31,21 @@ public class AccountController extends HttpServlet {
 		String dest = request.getParameter("dest");
 		if(dest==null) {page="NONE";}
 		}
+		String dest = request.getParameter("dest");
+		if(dest==null) {dest="NONE";}
+		HttpSession session = request.getSession();
 		switch(cmd) {
 		case"open-account":
 			String money = request.getParameter("money");
 			accountService.openAccount(Integer.parseInt(money));
 			AccountBean account = AccountServiceImpl.getInstance().findByAccountNum("");
-			String dest = request.getParameter("dest");
-			if(dest==null) {
-				dest="NONE";
-			}
 			request.setAttribute("dest", dest);
-			request.setAttribute("account", account);
-			Command.move(request, response, dir, page);
+			session.setAttribute("account", account);
 			break;
 		case"move" :
-			dest = request.getParameter("dest");
-			if(dest==null) {
-				dest="NONE";
-			}
 			request.setAttribute("dest", dest);
-			Command.move(request, response, dir,page);
 			break;
-		case"occount-detail":
+		case"account-detail":
 			
 			break;
 		case"findAllAccountNum":
@@ -77,6 +71,7 @@ public class AccountController extends HttpServlet {
 			AccountServiceImpl.getInstance().removeAccountNum(accountNum);
 			break;
 		}
+		Command.move(request, response, dir, page);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
